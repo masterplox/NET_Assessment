@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>{{isEditMode ? 'Edit' : 'Add'}} Department</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" required>
+            <mat-error *ngIf="departmentForm.get('name')?.hasError('required')">
+                Name is required
+            </mat-error>
+            <mat-error *ngIf="departmentForm.get('name')?.hasError('maxlength')">
+                Name must be less than 50 characters
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" rows="3"></textarea>
+            <mat-error *ngIf="departmentForm.get('description')?.hasError('maxlength')">
+                Description must be less than 200 characters
+            </mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="actions">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="!departmentForm.valid" (click)="onSubmit()">
+        {{isEditMode ? 'Update' : 'Add'}}
+    </button>
+</mat-dialog-actions> 

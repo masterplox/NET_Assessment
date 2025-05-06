@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>{{ isEdit ? 'Edit Employee' : 'Add Employee' }}</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" required>
+            <mat-error *ngIf="employeeForm.get('firstName')?.hasError('required')">
+                First Name is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" required>
+            <mat-error *ngIf="employeeForm.get('lastName')?.hasError('required')">
+                Last Name is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Hire Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="hireDate" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="employeeForm.get('hireDate')?.hasError('required')">
+                Hire Date is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Department</mat-label>
+            <mat-select formControlName="departmentId" required>
+                <mat-option *ngFor="let dept of departments" [value]="dept.id">
+                    {{ dept.name }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="employeeForm.get('departmentId')?.hasError('required')">
+                Department is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="phone">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Address</mat-label>
+            <textarea matInput formControlName="address" rows="3"></textarea>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="!employeeForm.valid" (click)="onSubmit()">
+        {{ isEdit ? 'Update' : 'Add' }}
+    </button>
+</mat-dialog-actions> 

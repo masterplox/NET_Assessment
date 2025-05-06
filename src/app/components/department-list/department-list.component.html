@@ -1,0 +1,9 @@
+<button mat-raised-button color="primary" (click)="openAddDialog()">
+    ➕ Add Department
+</button>
+<button color="primary" (click)="openEditDialog(department)" matTooltip="Edit">
+    ✏️
+</button>
+<button color="warn" (click)="deleteDepartment(department.id!)" matTooltip="Delete">
+    🗑️
+</button> 
