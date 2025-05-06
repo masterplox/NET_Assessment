@@ -65,7 +65,6 @@ This repository contains a full-stack Employee Management solution designed as p
 - MediatR, AutoMapper, xUnit/NUnit
 - Angular, TypeScript, Angular Material, RxJS
 - SQL Server/Azure SQL
-- Docker, Azure App Service
 
 ## Contributing
 This project is intended as a technical assessment and a demonstration of best practices for enterprise .NET and Angular development.
